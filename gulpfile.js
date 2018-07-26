@@ -91,4 +91,4 @@ gulp.task("clear", function () {
     return cache.clearAll();
 })
 
-gulp.task("default", ["watch]);
+gulp.task("default", ["watch"]);
