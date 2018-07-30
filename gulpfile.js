@@ -16,7 +16,6 @@ gulp.task("sass", function(){ // Создаем таск Sass
         .pipe(sass()) // Преобразуем Sass в CSS посредством gulp-sass
         .pipe(autoprefixer(["last 15 versions"], { cascade: true })) // Создаем префиксы
         .pipe(gulp.dest("app/css")) // Выгружаем результата в папку app/css
-        .pipe(browserSync.reload({stream: true})) // Обновляем CSS на странице при изменении
 });
 
 gulp.task("browser-sync", function() { // Создаем таск browser-sync
@@ -41,7 +40,8 @@ gulp.task("css-libs", ["sass"], function() {
     return gulp.src("app/css/main.css") // Выбираем файл для минификации
         .pipe(cssnano()) // Сжимаем
         .pipe(rename({suffix: ".min"})) // Добавляем суффикс .min
-        .pipe(gulp.dest("app/css")); // Выгружаем в папку app/css
+        .pipe(gulp.dest("app/css")) // Выгружаем в папку app/css
+        .pipe(browserSync.reload({stream: true})) // Обновляем CSS на странице при изменении
 });
 
 gulp.task("watch", ["browser-sync", "css-libs", "scripts"], function() {
